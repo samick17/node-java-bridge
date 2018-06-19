@@ -1,4 +1,4 @@
-#Description
+## Description
 
 **bridge API for node-java repository**
 
@@ -9,7 +9,7 @@ This API allows you:
 2. create java instance with "new" keyword
  
 
-#Installation
+## Installation
 
 
 
@@ -19,7 +19,7 @@ This API allows you:
 
     yarn add node-java-example
 
-##Usage
+## Usage
 
 
     
@@ -46,5 +46,5 @@ This API allows you:
     
 
 
-##[References]
+## [References]
 Github: [node-java](https://github.com/joeferner/node-java)
