@@ -1,0 +1,5 @@
+.git*
+index.js
+MANIFEST
+package-lock.json
+com

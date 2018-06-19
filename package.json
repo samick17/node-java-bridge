@@ -1,13 +1,22 @@
 {
-  "name": "java-example",
+  "name": "node-java-bridge",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "NodeJS java bridge API",
+  "main": "main.js",
   "scripts": {
     "start": "node index.js"
   },
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "node-java",
+    "java",
+    "node call java"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/samick17/node-java-bridge"
+  },
+  "author": "Samick <boneache@gmail.com>",
+  "license": "MIT",
   "dependencies": {
     "java": "^0.10.0"
   }
