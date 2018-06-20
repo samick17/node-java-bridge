@@ -10,7 +10,8 @@ This API allows you:
  
 ## ChangeLogs
 
-  1. 2018/06/20: (1.0.2) Update jar file for JavaSE-1.7 compatibility
+  1. 2018/06/20: (1.0.3) Replace all "let" with "var" for nodeJS compatibility
+  2. 2018/06/20: (1.0.2) Update jar file for JavaSE-1.7 compatibility
 
 ## Compatibility
 
