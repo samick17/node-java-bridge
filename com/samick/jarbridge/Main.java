@@ -1,8 +1,12 @@
 package com.samick.jarbridge;
-import com.samick.jarbridge.instance.*;
-import java.lang.reflect.*;
-import java.util.List;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
+
+import com.samick.jarbridge.instance.Base;
+import com.samick.jarbridge.instance.Concrete;
 
 public class Main {
 
@@ -14,19 +18,20 @@ public class Main {
     {
 		List<String> list = new ArrayList<String>();
         try {
-			Class c = Class.forName(className);
+			Class<?> c = Class.forName(className);
 			Method[] methods = c.getDeclaredMethods();
 			for(Method method : methods) {
 				boolean isStaticMethod = Modifier.isStatic( method.getModifiers());
-				Parameter[] params = method.getParameters();
+				Type[] types = method.getGenericParameterTypes();
+				//Parameter[] params = method.getParameters();
 				String methodInfo = method.getName();
 				methodInfo += ":"+(isStaticMethod ? "static" : "");
 				methodInfo += ":[";
-				for(int i = 0; i < params.length; i++) {
-					Parameter param = params[i];
-					String paramType = param.getParameterizedType().getTypeName();
+				for(int i = 0; i < types.length; i++) {
+					Type type = types[i];
+					String paramType = type.toString();
 					methodInfo += paramType;
-					if(i < params.length - 1) {
+					if(i < types.length - 1) {
 						methodInfo += ",";
 					}
 				}

@@ -8,6 +8,13 @@ This API allows you:
 
 2. create java instance with "new" keyword
  
+## ChangeLogs
+
+  1. 2018/06/20: (1.0.2) Update jar file for JavaSE-1.7 compatibility
+
+## Compatibility
+
+  1. Java1.7
 
 ## Installation
 

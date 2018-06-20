@@ -3,3 +3,7 @@ index.js
 MANIFEST
 package-lock.json
 com
+build.bat
+run.bat
+build.sh
+run.sh
