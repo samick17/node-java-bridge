@@ -23,13 +23,13 @@ public class Main {
 			for(Method method : methods) {
 				boolean isStaticMethod = Modifier.isStatic( method.getModifiers());
 				Type[] types = method.getGenericParameterTypes();
-				//Parameter[] params = method.getParameters();
 				String methodInfo = method.getName();
 				methodInfo += ":"+(isStaticMethod ? "static" : "");
 				methodInfo += ":[";
 				for(int i = 0; i < types.length; i++) {
 					Type type = types[i];
-					String paramType = type.toString();
+					
+					String paramType = type.getTypeName();
 					methodInfo += paramType;
 					if(i < types.length - 1) {
 						methodInfo += ",";
