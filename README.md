@@ -10,9 +10,11 @@ This API allows you:
  
 ## ChangeLogs
 
-  1. 2018/06/20: (1.0.4) Remove unused object javaAPI
-  2. 2018/06/20: (1.0.3) Replace all "let" with "var" for nodeJS compatibility
-  3. 2018/06/20: (1.0.2) Update jar file for JavaSE-1.7 compatibility
+  1. 2018/06/21: (1.0.6) UpdateReadMe
+  2. 2018/06/21: (1.0.5) Integrate instance method & static methods, refactor jar-bridge.js
+  3. 2018/06/20: (1.0.4) Remove unused object javaAPI
+  4. 2018/06/20: (1.0.3) Replace all "let" with "var" for nodeJS compatibility
+  5. 2018/06/20: (1.0.2) Update jar file for JavaSE-1.7 compatibility
 
 ## Compatibility
 
@@ -33,25 +35,30 @@ This API allows you:
 
     
     const path = require('path');
-    let jarPath = './Main.jar';
-    let jarBridge = require('./lib/jar-bridge');
-    
+    var jarPath = ['../my-java-project/Main.jar', './Main.jar'];
+    var jarBridge = require('./lib/jar-bridge');
+
     jarBridge.load(jarPath)
-    .then((data) => {
+    .then((api) => {
       console.log('---- Instance ----');
-      console.log(data.instance.Base);
-      let b1 = new data.instance.Base();
+      console.log(api.Base);
+      var b1 = new api.Base();
       console.log(b1.call('my arg'));
-    
+
       console.log('---- End of Instance ----');
-    
+
       console.log('---- Static Methods ----');
-    
-      console.log(data.static.Main.dumpMethods('com.samick.jarbridge.instance.Concrete'));
+      console.log(api.Main.dumpMethods('com.samick.jarbridge.instance.Concrete'));
       console.log('---- End of Static Methods ----');
     }, (err) => {
-    	console.log(err);
+      console.log('Error');
+      console.log(err);
+    })
+    .catch((err) => {
+      console.log('---- Catch ----');
+      console.log(err);
     });
+
     
 
 
