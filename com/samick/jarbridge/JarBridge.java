@@ -5,14 +5,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.samick.jarbridge.instance.Base;
-import com.samick.jarbridge.instance.Concrete;
-
-public class Main {
-
-	public static String Foo() {
-		return "Foo!!";
-	}
+public class JarBridge {
 
 	public static String[] dumpMethods(String className)
     {
@@ -45,23 +38,4 @@ public class Main {
 			return list.toArray(strArray);
     }
 
-	public static void main(String[] args) {
-		System.out.println(Foo());
-		Base b = new Base();
-		System.out.println(b.call());
-		Concrete c = new Concrete();
-		System.out.println(c.call());
-		System.out.println("---- Dump base class: com.samick.jarbridge.instance.Base ----");
-		String[] methods1 = dumpMethods("com.samick.jarbridge.instance.Base");
-		System.out.println(methods1.length);
-		for(String mName : methods1) {
-			System.out.println(mName);
-		}
-		System.out.println("---- Dump static class: com.samick.jarbridge.Main ----");
-		String[] methods2 = dumpMethods("com.samick.jarbridge.Main");
-		System.out.println(methods2.length);
-		for(String mName : methods2) {
-			System.out.println(mName);
-		}
-	}
 }

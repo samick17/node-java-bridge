@@ -1,6 +1,6 @@
 {
   "name": "node-java-bridge",
-  "version": "1.0.11",
+  "version": "1.0.20",
   "description": "NodeJS java bridge API",
   "main": "main.js",
   "scripts": {
