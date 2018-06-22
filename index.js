@@ -2,7 +2,7 @@ const path = require('path');
 var jarPath = ['../my-java-project/Main.jar', './Main.jar'];
 var jarBridge = require('./lib/jar-bridge');
 
-jarBridge.load(jarPath)
+jarBridge.load(jarPath, {sync: true})
 .then((api) => {
 	console.log('---- Instance ----');
 	console.log(api.Base);

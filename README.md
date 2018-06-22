@@ -30,15 +30,19 @@ This API allows you:
 
     yarn add node-java-example
 
-## Usage
+    1. Configure java path(for jar command).
+       if there is no jdk installation, you can also put jar file into your project,
+       and add following scripts:
+       process.env.Path += ';<your_jar_path>';
 
+## Usage
 
     
     const path = require('path');
     var jarPath = ['../my-java-project/Main.jar', './Main.jar'];
     var jarBridge = require('./lib/jar-bridge');
 
-    jarBridge.load(jarPath)
+    jarBridge.load(jarPath, {sync: true})
     .then((api) => {
       console.log('---- Instance ----');
       console.log(api.Base);
