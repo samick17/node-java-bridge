@@ -1,1 +1,1 @@
-module.exports = require('./lib/jar-bridge');
+module.exports = require('./lib/index');
