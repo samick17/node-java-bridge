@@ -1,8 +1,8 @@
 const path = require('path');
 
 function loadSample() {
-	const jarPath = ['../my-java-project/Main.jar'];
-	const jarBridge = require('./lib/jar-bridge');
+	const jarPath = ['./Main.jar'];
+	const jarBridge = require('../lib/jar-bridge');
 	jarBridge.load(jarPath, {sync: true})
 	.then((api) => {
 		console.log('---- Instance ----');
@@ -13,8 +13,9 @@ function loadSample() {
 		console.log('---- End of Instance ----');
 
 		console.log('---- Static Methods ----');
-		console.log(api.Main.dumpMethods('com.example.api.instance.Concrete'));
+		console.log(api.Main.Foo());
 		console.log('---- End of Static Methods ----');
+
 	}, (err) => {
 		console.log('Error');
 		console.log(err);
@@ -23,14 +24,17 @@ function loadSample() {
 		console.log('---- Catch ----');
 		console.log(err);
 	});
-
 }
 function loadModuleSample() {
-	const jarClassLoader = require('./lib/jar-class-loader');
-	jarClassLoader.addClassPath('../my-java-project/Main.jar');
+	const jarClassLoader = require('../lib/jar-class-loader');
+	jarClassLoader.addClassPath('./Main.jar');
 	var Main = jarClassLoader.loadJarModuleAsync('com/example/api/Main');
 	console.log(Main);
+
+	console.log('---- dumpMethods ----');
+	console.log(jarClassLoader.getClassMethods('com.example.api.instance.Concrete'));
+	console.log('---- End of dumpMethods ----');
 }
 
-//loadSample();
-//loadModuleSample();
+loadSample();
+loadModuleSample();
