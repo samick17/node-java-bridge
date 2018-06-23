@@ -10,12 +10,13 @@ This API allows you:
  
 ## ChangeLogs
 
-  1. 2018/06/22: (1.0.21) Update ReadMe-Usage, refactor jar-bridge.js & jar-class-loader.js, rename Main.jar to JarBridge.jar, remove unused class of JarBridge.java
-  2. 2018/06/21: (1.0.6) UpdateReadMe
-  3. 2018/06/21: (1.0.5) Integrate instance method & static methods, refactor jar-bridge.js
-  4. 2018/06/20: (1.0.4) Remove unused object javaAPI
-  5. 2018/06/20: (1.0.3) Replace all "let" with "var" for nodeJS compatibility
-  6. 2018/06/20: (1.0.2) Update jar file for JavaSE-1.7 compatibility
+  1. 2018/06/23: (1.0.22) Add example code
+  2. 2018/06/22: (1.0.21) Update ReadMe-Usage, refactor jar-bridge.js & jar-class-loader.js, rename Main.jar to JarBridge.jar, remove unused class of JarBridge.java
+  3. 2018/06/21: (1.0.6) UpdateReadMe
+  4. 2018/06/21: (1.0.5) Integrate instance method & static methods, refactor jar-bridge.js
+  5. 2018/06/20: (1.0.4) Remove unused object javaAPI
+  6. 2018/06/20: (1.0.3) Replace all "let" with "var" for nodeJS compatibility
+  7. 2018/06/20: (1.0.2) Update jar file for JavaSE-1.7 compatibility
 
 ## Compatibility
 
@@ -38,45 +39,49 @@ This API allows you:
 
 ## Usage
 
+ * Import module
+ 
+ 	* const nodeJavaBridge = require('node-java-bridge');
+
  * Load All Jar Classes
 
 	* Limitation: if jar is too large, it will throw array size exceed error.
 
 
 	
-    		const jarPath = ['../my-java-project/Main.jar'];
-    		const jarBridge = require('./lib/jar-bridge');
-    		jarBridge.load(jarPath, {sync: true})
-    		.then((api) => {
-    			console.log('---- Instance ----');
-	    		console.log(api.Base);
-    			var b1 = new api.Base();
-    			console.log(b1.call('my arg'));
-    
-    			console.log('---- End of Instance ----');
-    
-    			console.log('---- Static Methods ----');
-    			console.log(api.Main.dumpMethods('com.example.api.instance.Concrete'));
-    			console.log('---- End of Static Methods ----');
-    		}, (err) => {
-    			console.log('Error');
-	    		console.log(err);
-    		})
-    		.catch((err) => {
-    			console.log('---- Catch ----');
-    			console.log(err);
-    		});
+		nodeJavaBridge.load(jarPath, {sync: true})
+		.then((api) => {
+			console.log('---- Instance ----');
+			console.log(api.Base);
+			var b1 = new api.Base();
+			console.log(b1.call('my arg'));
+
+			console.log('---- End of Instance ----');
+
+			console.log('---- Static Methods ----');
+			console.log(api.Main.Foo());
+			console.log('---- End of Static Methods ----');
+
+		}, (err) => {
+			console.log('Error');
+			console.log(err);
+		})
+		.catch((err) => {
+			console.log('---- Catch ----');
+			console.log(err);
+		});
 	
 
  * Load part of jar
     
 
-    	const jarClassLoader = require('./lib/jar-class-loader');
-    	jarClassLoader.addClassPath('../my-java-project/Main.jar');
+	nodeJavaBridge.addClassPath('./Main.jar');
+	var Main = nodeJavaBridge.loadJarModuleAsync('com/example/api/Main');
+	console.log(Main);
 
-    	var Main = jarClassLoader.loadJarModuleAsync('com/example/api/Main');
-
-    	console.log(Main);
+	console.log('---- dumpMethods ----');
+	console.log(nodeJavaBridge.getClassMethods('com.example.api.instance.Concrete'));
+	console.log('---- End of dumpMethods ----');
 
     
 
