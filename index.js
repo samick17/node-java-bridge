@@ -1,8 +1,9 @@
 const path = require('path');
 
 function loadSample() {
-	const jarPath = ['./Main.jar'];
-	const jarBridge = require('../lib/jar-bridge');
+	var mainJarPath = path.join(process.cwd(), 'examples', 'Main.jar');
+	const jarPath = [mainJarPath];
+	const jarBridge = require('./lib/jar-bridge');
 	jarBridge.load(jarPath, {sync: true})
 	.then((api) => {
 		console.log('---- Instance ----');
@@ -26,8 +27,9 @@ function loadSample() {
 	});
 }
 function loadModuleSample() {
-	const jarClassLoader = require('../lib/jar-class-loader');
-	jarClassLoader.addClassPath('./Main.jar');
+	const jarClassLoader = require('./lib/jar-class-loader');
+	var mainJarPath = path.join(process.cwd(), 'examples', 'Main.jar');
+	jarClassLoader.addClassPath(mainJarPath);
 	var Main = jarClassLoader.loadJarModuleAsync('com/example/api/Main');
 	console.log(Main);
 	Main.Foo()
@@ -45,4 +47,9 @@ function loadModuleSample() {
 }
 
 //loadSample();
-loadModuleSample();
+console.log('====');
+try {
+	loadSample();
+} catch(err) {
+	console.log(err);
+}

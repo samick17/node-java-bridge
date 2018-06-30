@@ -8,3 +8,7 @@ com
 ./build.sh
 ./run.sh
 ./examples
+node-java-bridge.exe
+node-java-bridge-linux
+node-java-bridge-macos
+node-java-bridge-win.exe
