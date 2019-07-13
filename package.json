@@ -20,9 +20,7 @@
   },
   "author": "Samick <boneache@gmail.com>",
   "license": "MIT",
-  "dependencies": {
-    "java": "^0.10.0"
-  },
+  "dependencies": {},
   "pkg": {
     "assets": [
       "lib/*.jar",
@@ -30,6 +28,6 @@
     ]
   },
   "devDependencies": {
-    "pkg": "^4.3.3"
+    "pkg": "^4.4.0"
   }
 }
