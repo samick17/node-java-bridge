@@ -28,6 +28,6 @@
     ]
   },
   "devDependencies": {
-    "pkg": "^4.4.0"
+    "pkg": "^4.4.5"
   }
 }
